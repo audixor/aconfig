@@ -71,7 +71,18 @@ func WithFindOrCreate(filenames []string) func(*EasyConfig) error {
 func WithWindowsRegistry(key string) func(*EasyConfig) error {
 	return func(c *EasyConfig) error {
 		c.WindowsRegistry = true
-		c.WindowsRegistryKey = key
+		c.WindowsRegistryKey = "Software\\" + key
+		return nil
+	}
+}
+
+//goland:noinspection GoUnusedExportedFunction
+func WithKeyConstraints(keys []string) func(*EasyConfig) error {
+	return func(c *EasyConfig) error {
+		// Iterate over keys
+		for _, key := range keys {
+			c.KeyList = append(c.KeyList, key)
+		}
 		return nil
 	}
 }

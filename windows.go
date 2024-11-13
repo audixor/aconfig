@@ -16,6 +16,10 @@ import (
 // For *nix systems, simply read and store from the configuration structure
 
 func (c *EasyConfig) set(key string, value string) error {
+	// Check for key constraints
+	if !c.checkKey(key) {
+		return fmt.Errorf("invalid key: %s", key)
+	}
 
 	if c.WindowsRegistryKey == "" {
 		return fmt.Errorf("windows registry key not set")
@@ -43,6 +47,10 @@ func (c *EasyConfig) set(key string, value string) error {
 }
 
 func (c *EasyConfig) get(key string) (string, error) {
+	// Check for key constraints
+	if !c.checkKey(key) {
+		return "", fmt.Errorf("invalid key: %s", key)
+	}
 
 	if c.WindowsRegistryKey == "" {
 		return fmt.Errorf("windows registry key not set")
@@ -65,7 +73,7 @@ func (c *EasyConfig) get(key string) (string, error) {
 	// Get the key
 	value, _, err := rkey.GetStringValue(strings.ToLower(key))
 	if err != nil {
-		return "", fmt.Errorf("key %s does not exist", key)
+		return "", nil
 	}
 	return value, nil
 }

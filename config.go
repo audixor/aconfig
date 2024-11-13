@@ -10,8 +10,9 @@ import "fmt"
 type EasyConfig struct {
 	Loaded             bool              // Configuration loaded
 	WindowsRegistry    bool              // Use the Windows registry (ignored on non-Windows systems)
-	WindowsRegistryKey string            // Windows registry key
+	WindowsRegistryKey string            // Windows registry key (ignored on non-Windows systems)
 	ConfigFile         string            // Path to configuration file
+	KeyList            []string          // List of keys
 	Data               map[string]string // Configuration data
 }
 

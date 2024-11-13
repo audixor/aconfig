@@ -28,6 +28,7 @@ func (c *EasyConfig) load(filename string) error {
 	if err != nil {
 		return fmt.Errorf("error opening file %s: %v\n", filename, err)
 	}
+
 	defer func(file *os.File) {
 		_ = file.Close()
 	}(file)

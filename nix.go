@@ -15,14 +15,24 @@ import (
 // For *nix systems, simply read and store from the configuration structure
 
 func (c *EasyConfig) set(key string, value string) error {
+	// Check for key constraints
+	if !c.checkKey(key) {
+		return fmt.Errorf("invalid key: %s", key)
+	}
+
 	c.Data[strings.ToLower(key)] = value
 	return nil
 }
 
 func (c *EasyConfig) get(key string) (string, error) {
+	// Check for key constraints
+	if !c.checkKey(key) {
+		return "", fmt.Errorf("invalid key: %s", key)
+	}
+
 	value, ok := c.Data[strings.ToLower(key)]
 	if ok == false {
-		return "", fmt.Errorf("key %s does not exist", key)
+		return "", nil
 	}
 	return value, nil
 }
