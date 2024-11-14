@@ -2,7 +2,7 @@
 // Use of this source code is governed by the MIT license.
 // Please see the LICENSE file for details.
 
-package easyconfig
+package aconfig
 
 import (
 	"fmt"
@@ -10,15 +10,15 @@ import (
 )
 
 //goland:noinspection GoUnusedExportedFunction
-func WithLoad(fileName string) func(*EasyConfig) error {
-	return func(c *EasyConfig) error {
+func WithLoad(fileName string) func(*AConfig) error {
+	return func(c *AConfig) error {
 		return c.load(fileName)
 	}
 }
 
 //goland:noinspection GoUnusedExportedFunction
-func WithLoadOrCreate(filename string) func(*EasyConfig) error {
-	return func(c *EasyConfig) error {
+func WithLoadOrCreate(filename string) func(*AConfig) error {
+	return func(c *AConfig) error {
 		err := c.load(filename)
 		if err != nil {
 			c.Loaded = true
@@ -29,8 +29,8 @@ func WithLoadOrCreate(filename string) func(*EasyConfig) error {
 }
 
 //goland:noinspection GoUnusedExportedFunction
-func WithFind(filenames []string) func(*EasyConfig) error {
-	return func(c *EasyConfig) error {
+func WithFind(filenames []string) func(*AConfig) error {
+	return func(c *AConfig) error {
 		// Iterate through the possible configuration files
 		for _, filename := range filenames {
 			if _, err := os.Stat(filename); err == nil {
@@ -42,8 +42,8 @@ func WithFind(filenames []string) func(*EasyConfig) error {
 }
 
 //goland:noinspection GoUnusedExportedFunction
-func WithFindOrCreate(filenames []string) func(*EasyConfig) error {
-	return func(c *EasyConfig) error {
+func WithFindOrCreate(filenames []string) func(*AConfig) error {
+	return func(c *AConfig) error {
 		// Iterate through the possible configuration files
 		for _, filename := range filenames {
 			if _, err := os.Stat(filename); err == nil {
@@ -68,8 +68,8 @@ func WithFindOrCreate(filenames []string) func(*EasyConfig) error {
 }
 
 //goland:noinspection GoUnusedExportedFunction
-func WithWindowsRegistry(key string) func(*EasyConfig) error {
-	return func(c *EasyConfig) error {
+func WithWindowsRegistry(key string) func(*AConfig) error {
+	return func(c *AConfig) error {
 		c.WindowsRegistry = true
 		c.WindowsRegistryKey = "Software\\" + key
 		return nil
@@ -77,8 +77,8 @@ func WithWindowsRegistry(key string) func(*EasyConfig) error {
 }
 
 //goland:noinspection GoUnusedExportedFunction
-func WithKeyConstraints(keys []string) func(*EasyConfig) error {
-	return func(c *EasyConfig) error {
+func WithKeyConstraints(keys []string) func(*AConfig) error {
+	return func(c *AConfig) error {
 		// Iterate over keys
 		for _, key := range keys {
 			c.KeyList = append(c.KeyList, key)

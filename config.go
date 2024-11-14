@@ -2,12 +2,12 @@
 // Use of this source code is governed by the MIT license.
 // Please see the LICENSE file for details.
 
-package easyconfig
+package aconfig
 
 import "fmt"
 
-// EasyConfig holds all configuration data
-type EasyConfig struct {
+// AConfig holds all configuration data
+type AConfig struct {
 	Loaded             bool              // Configuration loaded
 	WindowsRegistry    bool              // Use the Windows registry (ignored on non-Windows systems)
 	WindowsRegistryKey string            // Windows registry key (ignored on non-Windows systems)
@@ -16,11 +16,11 @@ type EasyConfig struct {
 	Data               map[string]string // Configuration data
 }
 
-// New returns an EasyConfig instance
+// New returns an AConfig instance
 //
 //goland:noinspection GoUnusedExportedFunction
-func New(options ...func(*EasyConfig) error) (*EasyConfig, error) {
-	c := &EasyConfig{
+func New(options ...func(*AConfig) error) (*AConfig, error) {
+	c := &AConfig{
 		Loaded:             false,
 		WindowsRegistry:    false,
 		WindowsRegistryKey: "",
@@ -39,7 +39,7 @@ func New(options ...func(*EasyConfig) error) (*EasyConfig, error) {
 }
 
 // Init initializes the configuration data
-func (c *EasyConfig) Init() {
+func (c *AConfig) Init() {
 	// Delete everything in the existing config
 	for k := range c.Data {
 		delete(c.Data, k)
@@ -48,7 +48,7 @@ func (c *EasyConfig) Init() {
 }
 
 // Save the configuration to the specified file
-func (c *EasyConfig) Save(filename string) error {
+func (c *AConfig) Save(filename string) error {
 	if filename == "" {
 		if c.ConfigFile != "" {
 			filename = c.ConfigFile
@@ -60,7 +60,7 @@ func (c *EasyConfig) Save(filename string) error {
 }
 
 // Checkpoint saves the configuration to the last loaded file
-func (c *EasyConfig) Checkpoint() error {
+func (c *AConfig) Checkpoint() error {
 	if c.ConfigFile == "" {
 		return fmt.Errorf("checkpoint requires a loaded configuration")
 	}
@@ -68,12 +68,12 @@ func (c *EasyConfig) Checkpoint() error {
 }
 
 // Dump configuration to stdout for diagnostics
-func (c *EasyConfig) Dump() {
+func (c *AConfig) Dump() {
 	c.dump()
 }
 
 // Exists checks if the specified configuration key exits
-func (c *EasyConfig) Exists(key string) bool {
+func (c *AConfig) Exists(key string) bool {
 	_, ok := c.Data[key]
 	return ok
 }

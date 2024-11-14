@@ -2,7 +2,7 @@
 // Use of this source code is governed by the MIT license.
 // Please see the LICENSE file for details.
 
-package easyconfig
+package aconfig
 
 import (
 	"encoding/json"
@@ -11,7 +11,7 @@ import (
 )
 
 // Load configuration from specified file
-func (c *EasyConfig) load(filename string) error {
+func (c *AConfig) load(filename string) error {
 
 	// Loading not allowed when using the Windows registry
 	if c.WindowsRegistry {

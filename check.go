@@ -2,9 +2,9 @@
 // Use of this source code is governed by the MIT license.
 // Please see the LICENSE file for details.
 
-package easyconfig
+package aconfig
 
-func (c *EasyConfig) checkKey(key string) bool {
+func (c *AConfig) checkKey(key string) bool {
 	// If no key constraints, any are valid
 	if len(c.KeyList) == 0 {
 		return true

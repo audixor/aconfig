@@ -5,7 +5,7 @@
 // Code for operating systems other than windows
 //go:build !windows
 
-package easyconfig
+package aconfig
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ import (
 
 // For *nix systems, simply read and store from the configuration structure
 
-func (c *EasyConfig) set(key string, value string) error {
+func (c *AConfig) set(key string, value string) error {
 	// Check for key constraints
 	if !c.checkKey(key) {
 		return fmt.Errorf("invalid key: %s", key)
@@ -24,7 +24,7 @@ func (c *EasyConfig) set(key string, value string) error {
 	return nil
 }
 
-func (c *EasyConfig) get(key string) (string, error) {
+func (c *AConfig) get(key string) (string, error) {
 	// Check for key constraints
 	if !c.checkKey(key) {
 		return "", fmt.Errorf("invalid key: %s", key)

@@ -2,7 +2,7 @@
 // Use of this source code is governed by the MIT license.
 // Please see the LICENSE file for details.
 
-package easyconfig
+package aconfig
 
 import (
 	"errors"
@@ -11,7 +11,7 @@ import (
 )
 
 // GetStr retrieves a string value or returns an error
-func (c *EasyConfig) GetStr(key string) (string, error) {
+func (c *AConfig) GetStr(key string) (string, error) {
 	value, err := c.get(key)
 	if err != nil {
 		return "", err
@@ -20,7 +20,7 @@ func (c *EasyConfig) GetStr(key string) (string, error) {
 }
 
 // GetStrDefault retrieves a string value or returns the specified default
-func (c *EasyConfig) GetStrDefault(key string, defaultValue string) string {
+func (c *AConfig) GetStrDefault(key string, defaultValue string) string {
 	value, err := c.GetStr(key)
 	if err != nil {
 		return defaultValue
@@ -29,7 +29,7 @@ func (c *EasyConfig) GetStrDefault(key string, defaultValue string) string {
 }
 
 // GetInt retrieves an integer value or returns an error
-func (c *EasyConfig) GetInt(key string) (int, error) {
+func (c *AConfig) GetInt(key string) (int, error) {
 	value, err := c.get(key)
 	if err != nil {
 		return 0, err
@@ -43,7 +43,7 @@ func (c *EasyConfig) GetInt(key string) (int, error) {
 }
 
 // GetIntDefault retrieves an integer value or returns the specified default
-func (c *EasyConfig) GetIntDefault(key string, defaultValue int) int {
+func (c *AConfig) GetIntDefault(key string, defaultValue int) int {
 	value, err := c.GetInt(key)
 	if err != nil {
 		return defaultValue
@@ -52,7 +52,7 @@ func (c *EasyConfig) GetIntDefault(key string, defaultValue int) int {
 }
 
 // GetInt64 retrieves an int64 value or returns an error
-func (c *EasyConfig) GetInt64(key string) (int64, error) {
+func (c *AConfig) GetInt64(key string) (int64, error) {
 	value, err := c.get(key)
 	if err != nil {
 		return 0, err
@@ -67,7 +67,7 @@ func (c *EasyConfig) GetInt64(key string) (int64, error) {
 }
 
 // GetInt64Default retrieves an int64 value or returns the specified default
-func (c *EasyConfig) GetInt64Default(key string, defaultValue int64) int64 {
+func (c *AConfig) GetInt64Default(key string, defaultValue int64) int64 {
 	value, err := c.GetInt64(key)
 	if err != nil {
 		return defaultValue
@@ -76,7 +76,7 @@ func (c *EasyConfig) GetInt64Default(key string, defaultValue int64) int64 {
 }
 
 // GetBool retrieves a boolean value or returns an error
-func (c *EasyConfig) GetBool(key string) (bool, error) {
+func (c *AConfig) GetBool(key string) (bool, error) {
 	value, err := c.get(key)
 	if err != nil {
 		return false, err
@@ -110,7 +110,7 @@ func (c *EasyConfig) GetBool(key string) (bool, error) {
 }
 
 // GetBoolDefault retrieves a boolean value or the specified default
-func (c *EasyConfig) GetBoolDefault(key string, defaultValue bool) bool {
+func (c *AConfig) GetBoolDefault(key string, defaultValue bool) bool {
 	value, err := c.GetBool(key)
 	if err != nil {
 		return defaultValue

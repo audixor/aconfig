@@ -2,7 +2,7 @@
 // Use of this source code is governed by the MIT license.
 // Please see the LICENSE file for details.
 
-package easyconfig
+package aconfig
 
 import (
 	"encoding/json"
@@ -13,7 +13,7 @@ import (
 )
 
 // Save configuration to specified file
-func (c *EasyConfig) save(filename string) error {
+func (c *AConfig) save(filename string) error {
 
 	// Saving not required when using the Windows registry
 	if c.WindowsRegistry {
