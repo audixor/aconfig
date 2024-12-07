@@ -37,9 +37,9 @@ func (c *AConfig) set(key string, value string) error {
 	// Defer closing the key
 	defer func(rkey registry.Key) {
 		_ = rkey.Close()
-	}(key)
+	}(rkey)
 
-	err := rkey.SetStringValue(strings.ToLower(key), value)
+	err = rkey.SetStringValue(strings.ToLower(key), value)
 	if err != nil {
 		return fmt.Errorf("failed to set %s registry value: %v", strings.ToLower(key), err)
 	}
@@ -53,7 +53,7 @@ func (c *AConfig) get(key string) (string, error) {
 	}
 
 	if c.WindowsRegistryKey == "" {
-		return fmt.Errorf("windows registry key not set")
+		return "", fmt.Errorf("windows registry key not set")
 	}
 
 	// Create path
@@ -62,13 +62,13 @@ func (c *AConfig) get(key string) (string, error) {
 	// Open the registry key
 	rkey, _, err := registry.CreateKey(registry.CURRENT_USER, rPath, registry.ALL_ACCESS)
 	if err != nil {
-		return fmt.Errorf("failed to open registry key %s: %v", rPath, err)
+		return "", fmt.Errorf("failed to open registry key %s: %v", rPath, err)
 	}
 
 	// Defer closing the key
 	defer func(rkey registry.Key) {
 		_ = rkey.Close()
-	}(key)
+	}(rkey)
 
 	// Get the key
 	value, _, err := rkey.GetStringValue(strings.ToLower(key))
